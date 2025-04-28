@@ -61,25 +61,19 @@ public class GestionnaireCours {
 
     private void genererCoursParDefaut() {
         // Créer des cours par défaut
-        Cours cours1 = new Cours("Programmation Java", Discipline.PROGRAMMATION, new ArrayList<Personne>(
-                List.of(new Professeur("Alice", "Dupont", LocalDate.of(1985, 5, 15), Discipline.PROGRAMMATION, 15),
-                        new Etudiant("Bob", "Martin", LocalDate.of(2000, 3, 20), "123456", 95.5),
-                        new Etudiant("Charlie", "Durand", LocalDate.of(1999, 7, 10), "654321", 84.0)
-                )
-        ));
-        Cours cours2 = new Cours("Développement Web II", Discipline.WEB, new ArrayList<Personne>(
-                List.of(new Professeur("David", "Leroy", LocalDate.of(1978, 11, 25), Discipline.BASES_DE_DONNEES, 3),
-                        new Etudiant("Eve", "Bernard", LocalDate.of(2001, 1, 30), "789012", 88.0),
-                        new Etudiant("Frank", "Lemoine", LocalDate.of(2002, 4, 5), "345678", 92.0)
-                )
-        ));
-        Cours cours3 = new Cours("Réseaux avancés", Discipline.RESEAUX, new ArrayList<Personne>(
-                List.of(new Professeur("Patrick", "Moreau", LocalDate.of(1990, 8, 12), Discipline.OBJETS_CONNECTES, 5),
-                        new Etudiant("Hugo", "Rousseau", LocalDate.of(2003, 2, 14), "901234", 78.0),
-                        new Etudiant("Iris", "Garnier", LocalDate.of(2004, 6, 18), "567890", 85.0)
-                )
-        ));
-
+        Cours cours1 = new Cours("Programmation Java", Discipline.PROGRAMMATION, new ArrayList<Personne>());
+        cours1.ajouterPersonne(new Professeur("Alice", "Dupont", LocalDate.of(1985, 5, 15), Discipline.PROGRAMMATION, 15));
+        cours1.ajouterPersonne(new Etudiant("Bob", "Martin", LocalDate.of(2000, 3, 20), "123456", 95.5));
+        cours1.ajouterPersonne(new Etudiant("Charlie", "Durand", LocalDate.of(1999, 7, 10), "654321", 84.0));
+        Cours cours2 = new Cours("Développement Web II", Discipline.WEB, new ArrayList<Personne>());
+        cours2.ajouterPersonne(new Professeur("David", "Leroy", LocalDate.of(1978, 11, 25), Discipline.BASES_DE_DONNEES, 3));
+        cours2.ajouterPersonne(new Etudiant("Eve", "Bernard", LocalDate.of(2001, 1, 30), "789012", 88.0));
+        cours2.ajouterPersonne(new Etudiant("Frank", "Lemoine", LocalDate.of(2002, 4, 5), "345678", 92.0));        
+        Cours cours3 = new Cours("Réseaux avancés", Discipline.RESEAUX, new ArrayList<Personne>());
+        cours3.ajouterPersonne(new Professeur("Patrick", "Moreau", LocalDate.of(1990, 8, 12), Discipline.OBJETS_CONNECTES, 5));
+        cours3.ajouterPersonne(new Etudiant("Hugo", "Rousseau", LocalDate.of(2003, 2, 14), "901234", 78.0));
+        cours3.ajouterPersonne(new Etudiant("Iris", "Garnier", LocalDate.of(2004, 6, 18), "567890", 85.0));
+        
         listeCours.add(cours1);
         listeCours.add(cours2);
         listeCours.add(cours3);

@@ -89,4 +89,14 @@ public class Cours implements Serializable, Comparable<Cours> {
         return nbEtudiants;
     }
 
+    public void ajouterPersonne(Personne p) {
+        personnes.add(p);
+    }
+
+    public void supprimerPersonne(Personne p) {
+        for(Personne _p : personnes) {
+            if(p.equals(_p)) personnes.remove(_p);
+        }
+    }
+
 }
