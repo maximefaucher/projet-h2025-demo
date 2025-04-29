@@ -16,7 +16,7 @@ public class Cours implements Serializable, Comparable<Cours> {
     }
 
     public Cours(String nom, Discipline discipline, ArrayList<Personne> personnes) {
-        this.nom = nom;
+        setNom(nom);
         this.discipline = discipline;
         this.personnes = personnes;
     }
@@ -26,6 +26,9 @@ public class Cours implements Serializable, Comparable<Cours> {
     }
 
     public void setNom(String nom) {
+        if(nom == null || nom.trim().equals("")) {
+            throw new IllegalArgumentException("Le nom ne peut pas être vide.");
+        }
         this.nom = nom;
     }
 

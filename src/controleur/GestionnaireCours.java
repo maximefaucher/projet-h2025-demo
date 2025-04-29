@@ -50,12 +50,13 @@ public class GestionnaireCours {
 
     public void sauvegarderDansFichier(String nomFichier) throws IOException {
         // Mettre le code pour écrire l'ArrayList<Cours> dans un fichier sérialisé
+        // TODO
     }
 
     @SuppressWarnings("unchecked") // pour éviter les avertissements de compilation
     public void chargerDepuisFichier(String nomFichier) throws IOException, ClassNotFoundException {
         // Mettre le code pour lire le fichier et récupérer l'ArrayList<Cours> sérialisée
-
+        // TODO
         genererCoursParDefaut(); // Si jamais le fichier n'existe pas ou que la liste est vide, on génère des cours par défaut
     }
 

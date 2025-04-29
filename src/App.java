@@ -5,13 +5,27 @@
  *            Programme principal de l'application
 */
 
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import controleur.GestionnaireCours;
+import modele.Cours;
+import modele.Discipline;
 import vue.FenetrePrincipale;
 
 public class App {
     public static void main(String[] args) throws Exception {
+
+        // Cours cours1 = new Cours();
+        // try {
+        //     cours1.setNom("Cours bidon");
+        // }
+        // catch(IllegalArgumentException iae) {
+        //     System.out.println("La construction du cours a échoué : " + iae.getMessage());
+        // }
+
+        // System.out.println(cours1);
 
         SwingUtilities.invokeLater(() -> {
             // Créer une instance de GestionnaireCours et charger les données depuis le fichier

@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import controleur.*;
 
-public class FenetrePrincipale extends JFrame{
+public class FenetrePrincipale extends JFrame {
 
     private GestionnaireCours gestionnaire;
     public enum ActionsCours {LISTER, AJOUTER, AFFICHER_PERSONNES, QUITTER};
@@ -38,12 +38,18 @@ public class FenetrePrincipale extends JFrame{
 
         // ActionListener pour les boutons
         listerButton.addActionListener(e -> afficherEquipes());
+        // ajouter des action listeners ici pour les autres fonctionnalités
+        ajouterButton.addActionListener(e -> ajouterEquipe());
         quitterButton.addActionListener(e -> quitterApplication());
         
     }
 
     private void afficherEquipes() {
-        new DialogueListeCours(this, gestionnaire, ActionsCours.LISTER).setVisible(true);;
+        new DialogueListeCours(this, gestionnaire, ActionsCours.LISTER).setVisible(true);
+    }
+
+    private void ajouterEquipe() {
+        new DialogueAjoutCours(this, gestionnaire).setVisible(true);
     }
 
     private void quitterApplication() {

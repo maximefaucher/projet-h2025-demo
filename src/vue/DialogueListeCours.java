@@ -23,7 +23,7 @@ public class DialogueListeCours extends JDialog {
 
         JButton okButton = new JButton("Fermer");
         okButton.addActionListener(e -> dispose());
-        add(okButton, "South");
+        add(okButton, BorderLayout.SOUTH);
 
     }
 
