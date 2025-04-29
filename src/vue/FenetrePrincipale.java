@@ -7,7 +7,7 @@ import controleur.*;
 public class FenetrePrincipale extends JFrame {
 
     private GestionnaireCours gestionnaire;
-    public enum ActionsCours {LISTER, AJOUTER, AFFICHER_PERSONNES, QUITTER};
+    public enum ActionsCours {LISTER, AJOUTER_PERSONNE, AFFICHER_PERSONNES, QUITTER};
 
     public FenetrePrincipale(GestionnaireCours gestionnaire) {
         // On initialise la fenêtre principale
@@ -25,12 +25,14 @@ public class FenetrePrincipale extends JFrame {
         JButton listerButton = new JButton("Lister les cours");
         JButton ajouterButton = new JButton("Ajouter un cours");
         JButton afficherButton = new JButton("Afficher les personnes d'un cours");
+        JButton ajouterPersonneButton = new JButton("Ajouter une personne à un cours");
         JButton quitterButton = new JButton("Quitter");
         quitterButton.setBackground(new Color( 242, 102, 102)); // Couleur de fond personnalisée
         // On ajoute les boutons au panneau
         panel.add(listerButton);
         panel.add(ajouterButton);
         panel.add(afficherButton);
+        panel.add(ajouterPersonneButton);
         panel.add(quitterButton);
         // On ajoute le panneau à la fenêtre principale
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Ajout d'une bordure vide (10px partout)
@@ -39,7 +41,8 @@ public class FenetrePrincipale extends JFrame {
         // ActionListener pour les boutons
         listerButton.addActionListener(e -> afficherEquipes());
         // ajouter des action listeners ici pour les autres fonctionnalités
-        ajouterButton.addActionListener(e -> ajouterEquipe());
+        ajouterButton.addActionListener(e -> ajouterCours());
+        ajouterPersonneButton.addActionListener(e -> ajouterPersonneCours());
         quitterButton.addActionListener(e -> quitterApplication());
         
     }
@@ -48,8 +51,12 @@ public class FenetrePrincipale extends JFrame {
         new DialogueListeCours(this, gestionnaire, ActionsCours.LISTER).setVisible(true);
     }
 
-    private void ajouterEquipe() {
+    private void ajouterCours() {
         new DialogueAjoutCours(this, gestionnaire).setVisible(true);
+    }
+
+    private void ajouterPersonneCours() {
+        new DialogueListeCours(this, gestionnaire, ActionsCours.AJOUTER_PERSONNE).setVisible(true);
     }
 
     private void quitterApplication() {

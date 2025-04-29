@@ -35,6 +35,14 @@ public class GestionnaireCours {
         this.listeCours.remove(cours);
     }
 
+    // Pour ajouter une personne à un cours
+    public void ajoutPersonneCours(Cours cours, Personne personne) {
+        int index = this.listeCours.indexOf(cours);
+        if (index != -1) {
+            this.listeCours.get(index).ajouterPersonne(personne);
+        }
+    }
+
     // Pour remplacer un cours par un autre (mise à jour)
     public void remplacerCours(Cours ancienCours, Cours nouveauCours) {
         int index = this.listeCours.indexOf(ancienCours);
