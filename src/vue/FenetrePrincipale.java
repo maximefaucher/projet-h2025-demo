@@ -22,7 +22,7 @@ public class FenetrePrincipale extends JFrame {
         panel.setLayout(new FlowLayout());
 
         // On crée les boutons pour les différentes actions
-        JButton listerButton = new JButton("Lister les cours");
+        JButton listerButton = new JButton("Lister les équipes");
         JButton ajouterButton = new JButton("Ajouter un cours");
         JButton afficherButton = new JButton("Afficher les personnes d'un cours");
         JButton quitterButton = new JButton("Quitter");
@@ -45,11 +45,11 @@ public class FenetrePrincipale extends JFrame {
     }
 
     private void afficherEquipes() {
-        new DialogueListeCours(this, gestionnaire, ActionsCours.LISTER).setVisible(true);
+        new DialogueListeEquipes(this, gestionnaire).setVisible(true);
     }
 
     private void ajouterEquipe() {
-        new DialogueAjoutCours(this, gestionnaire).setVisible(true);
+        new DialogueAjoutJoueur(this, gestionnaire).setVisible(true);
     }
 
     private void quitterApplication() {

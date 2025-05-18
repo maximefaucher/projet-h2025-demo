@@ -1,24 +1,22 @@
 package modele;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Comparator;
+import java.util.List;
 
-public abstract class Personne implements Serializable, Comparable<Personne> {
+public abstract class Personne implements Serializable, Comparator<Personne> {
 
     protected String prenom;
     protected String nom;
-    protected LocalDate dateNaissance;
     
     public Personne() {
         this.prenom = "Jean";
         this.nom = "Jean";
-        this.dateNaissance = LocalDate.now();
     }
 
-    public Personne(String prenom, String nom, LocalDate dateNaissance) {
+    public Personne(String prenom, String nom) {
         this.prenom = prenom;
         this.nom = nom;
-        this.dateNaissance = dateNaissance;
     }
 
     public String getPrenom() {
@@ -26,6 +24,10 @@ public abstract class Personne implements Serializable, Comparable<Personne> {
     }
 
     public void setPrenom(String prenom) {
+        if (prenom == null || prenom.trim().equals("")) {
+            throw new IllegalArgumentException("Le prénom ne peut pas être vide.");
+            
+        }
         this.prenom = prenom;
     }
 
@@ -34,16 +36,13 @@ public abstract class Personne implements Serializable, Comparable<Personne> {
     }
 
     public void setNom(String nom) {
+        if (nom == null || nom.trim().equals("")) {
+            throw new IllegalArgumentException("Le nom ne peut pas être vide.");
+        }
         this.nom = nom;
     }
 
-    public LocalDate getDateNaissance() {
-        return dateNaissance;
-    }
 
-    public void setDateNaissance(LocalDate dateNaissance) {
-        this.dateNaissance = dateNaissance;
-    }
 
     @Override
     public int hashCode() {
@@ -51,26 +50,32 @@ public abstract class Personne implements Serializable, Comparable<Personne> {
         int result = 1;
         result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
         result = prime * result + ((nom == null) ? 0 : nom.hashCode());
-        result = prime * result + ((dateNaissance == null) ? 0 : dateNaissance.hashCode());
         return result;
     }
 
+
     public boolean equals(Personne obj) {
-        return this.prenom.equals(obj.getPrenom()) && this.nom.equals(obj.getNom()) && this.dateNaissance.equals(obj.getDateNaissance());
+        return this.prenom.equals(obj.getPrenom()) && this.nom.equals(obj.getNom());
     }
 
-    @Override
     public String toString() {
-        return prenom + " " + nom + " (" + dateNaissance + ")";
+        return prenom + " " + nom;
     }
 
-    // Ordre naturel : par nom puis par prénom
-    public int compareTo(Personne o) {
-        if (this.nom.equals(o.getNom())) {
-            return this.prenom.compareTo(o.getPrenom());
+
+    public int compare(Personne p1, Personne p2) {
+        if (p1 instanceof Joueur && !(p2 instanceof Joueur)) {
+            return -1; // Joueurs come first
+        } else if (p1 instanceof Entraineur && p2 instanceof Medecin) {
+            return -1; // Entraineurs come before Medecins
+        } else if (p1 instanceof Medecin && !(p2 instanceof Medecin)) {
+            return 1; // Medecins come last
+        } else if (p1.getClass().equals(p2.getClass())) {
+            // If same type, compare by name and then by first name
+            int nameComparison = p1.nom.compareTo(p2.getNom());
+            return nameComparison != 0 ? nameComparison : p1.prenom.compareTo(p2.getPrenom());
         } else {
-            return this.nom.compareTo(o.getNom());
+            return 0; // Default case for other types
         }
     }
-
 }

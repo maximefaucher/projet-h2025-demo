@@ -9,43 +9,37 @@ import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
+
+import javax.swing.JOptionPane;
+
 import modele.*;
 
 public class GestionnaireCours {
-
-    private ArrayList<Cours> listeCours;
+    
+    private ArrayList<Equipes> listeEquipes;
     public static final String NOM_FICHIER = "cours.dat"; // Nom du fichier de sauvegarde
 
     public GestionnaireCours() {
-        this.listeCours = new ArrayList<Cours>();
+        this.listeEquipes = new ArrayList<Equipes>();
     }
 
-    public ArrayList<Cours> getListeCours() {
-        return listeCours;
+    public ArrayList<Equipes> getListeEquipes() {
+        return listeEquipes;
     }
 
-    // Pour ajouter un cours
-    public void ajouterCours(Cours cours) {
-        this.listeCours.add(cours);
+    // Méthode pour trier les équipes par ordre alphabétique
+    public void triEqipes() {
+        Collections.sort(listeEquipes);
     }
 
-    // Pour supprimer un cours
-    public void supprimerCours(Cours cours) {
-        this.listeCours.remove(cours);
+    // Méthode pour trier les personnes d'une équipe
+    public void triPersonnes(Equipes equipe) {
     }
 
-    // Pour remplacer un cours par un autre (mise à jour)
-    public void remplacerCours(Cours ancienCours, Cours nouveauCours) {
-        int index = this.listeCours.indexOf(ancienCours);
-        if (index != -1) {
-            this.listeCours.set(index, nouveauCours);
-        }
-    }
 
     // Pour récupérer les personnes d'un cours donné
-    public ArrayList<Personne> getPersonnesDuCours(Cours cours) {
-        return cours.getPersonnes();
+    public ArrayList<Personne> getPersonnesDuCours(Equipes equipe) {
+        return equipe.getPersonnes();
     }
 
     public void sauvegarderDansFichier(String nomFichier) throws IOException {
@@ -57,34 +51,45 @@ public class GestionnaireCours {
     public void chargerDepuisFichier(String nomFichier) throws IOException, ClassNotFoundException {
         // Mettre le code pour lire le fichier et récupérer l'ArrayList<Cours> sérialisée
         // TODO
-        genererCoursParDefaut(); // Si jamais le fichier n'existe pas ou que la liste est vide, on génère des cours par défaut
+        genererEquipesParDefaut(); // Si jamais le fichier n'existe pas ou que la liste est vide, on génère des cours par défaut
     }
 
-    private void genererCoursParDefaut() {
+    private void genererEquipesParDefaut() {
         // Créer des cours par défaut
-        Cours cours1 = new Cours("Programmation Java", Discipline.PROGRAMMATION, new ArrayList<Personne>());
-        cours1.ajouterPersonne(new Professeur("Alice", "Dupont", LocalDate.of(1985, 5, 15), Discipline.PROGRAMMATION, 15));
-        cours1.ajouterPersonne(new Etudiant("Bob", "Martin", LocalDate.of(2000, 3, 20), "123456", 95.5));
-        cours1.ajouterPersonne(new Etudiant("Charlie", "Durand", LocalDate.of(1999, 7, 10), "654321", 84.0));
-        Cours cours2 = new Cours("Développement Web II", Discipline.WEB, new ArrayList<Personne>());
-        cours2.ajouterPersonne(new Professeur("David", "Leroy", LocalDate.of(1978, 11, 25), Discipline.BASES_DE_DONNEES, 3));
-        cours2.ajouterPersonne(new Etudiant("Eve", "Bernard", LocalDate.of(2001, 1, 30), "789012", 88.0));
-        cours2.ajouterPersonne(new Etudiant("Frank", "Lemoine", LocalDate.of(2002, 4, 5), "345678", 92.0));        
-        Cours cours3 = new Cours("Réseaux avancés", Discipline.RESEAUX, new ArrayList<Personne>());
-        cours3.ajouterPersonne(new Professeur("Patrick", "Moreau", LocalDate.of(1990, 8, 12), Discipline.OBJETS_CONNECTES, 5));
-        cours3.ajouterPersonne(new Etudiant("Hugo", "Rousseau", LocalDate.of(2003, 2, 14), "901234", 78.0));
-        cours3.ajouterPersonne(new Etudiant("Iris", "Garnier", LocalDate.of(2004, 6, 18), "567890", 85.0));
+        Equipes equipe1 = new Equipes("Les Chatouilleux Prisoniers", "Saint-Jérôme", new ArrayList<Personne>());
+        Equipes equipe2 = new Equipes("Yvons d'Acier", "Nova-Scotia", new ArrayList<Personne>());
+        Equipes equipe3 = new Equipes("Les Trains Immobilles", "Shawinigan", new ArrayList<Personne>());
+        Equipes equipe4 = new Equipes("Les Crystales Bruns", "Bas-du-Cap", new ArrayList<Personne>());
+        Equipes equipe5 = new Equipes("Dairy Queen", "Tokyo", new ArrayList<Personne>());
+        Equipes equipe6 = new Equipes("mélasse", "NYC", new ArrayList<Personne>());
+        Equipes equipe7 = new Equipes("ptits cocos du Sag", "Jonquière", new ArrayList<Personne>());
+        equipe1.ajouterPersonne(new Entraineur("Marco","Pilieux",LocalDate.of(2001,2, 1),23, Disciplines.TypeEntr.ENTR_ADJOINT));
+        equipe1.ajouterPersonne(new Joueur("Lud","Eau",LocalDate.of(2001,2, 1),Disciplines.Position.MENEUR,23));
+        equipe1.ajouterPersonne(new Joueur("Lud","Eau",LocalDate.of(2001,2, 1),Disciplines.Position.MENEUR,23));
+        equipe1.ajouterPersonne(new Joueur("Lud","Eau",LocalDate.of(2001,2, 1),Disciplines.Position.MENEUR,23));
+        equipe1.ajouterPersonne(new Joueur("Lsud","Eau",LocalDate.of(2001,2, 1),Disciplines.Position.MENEUR,23));
+        equipe1.ajouterPersonne(new Joueur("Lud","Eau",LocalDate.of(2001,2, 1),Disciplines.Position.MENEUR,23));
+        equipe1.ajouterPersonne(new Joueur("Ludsad","Eau",LocalDate.of(2001,2, 1),Disciplines.Position.MENEUR,23));
+        equipe1.ajouterPersonne(new Joueur("Lusd","Eau",LocalDate.of(2001,2, 1),Disciplines.Position.MENEUR,23));
+        equipe1.ajouterPersonne(new Medecin("Doc","Mailloux","Les Marsoins Médecins",Disciplines.Specialite.MEDECIN_SPORT));
+      
         
-        listeCours.add(cours1);
-        listeCours.add(cours2);
-        listeCours.add(cours3);
+        listeEquipes.add(equipe1);
+        listeEquipes.add(equipe2);
+        listeEquipes.add(equipe3);
+        listeEquipes.add(equipe4);
+        listeEquipes.add(equipe5);
+        listeEquipes.add(equipe6);
+        listeEquipes.add(equipe7);
+        // listeEquipes.add(cours2);
+        // listeEquipes.add(cours3);
 
         // Mélanger les listes (afin de tester les tris)
-        Collections.shuffle(listeCours); // les cours
-        for (Cours cours : listeCours) { // les personnes dans les cours
+        Collections.shuffle(listeEquipes); // les cours
+        for (Equipes cours : listeEquipes) { // les personnes dans les cours
             Collections.shuffle(cours.getPersonnes());
         }
 
     }
-
+    
 }

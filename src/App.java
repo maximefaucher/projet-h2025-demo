@@ -10,12 +10,12 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import controleur.GestionnaireCours;
-import modele.Cours;
-import modele.Discipline;
+import modele.Equipes;
 import vue.FenetrePrincipale;
 
 public class App {
     public static void main(String[] args) throws Exception {
+
 
         // Cours cours1 = new Cours();
         // try {
